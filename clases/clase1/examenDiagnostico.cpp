@@ -9,6 +9,11 @@
 
 using namespace std;
 
+/**
+* Cuenta los terminators en un array.
+* @params: 
+* - 
+*/
 int countTerminators(int * arr, const int N){
   int counter = 0;
   for(int i = 0; i < N; i++){
