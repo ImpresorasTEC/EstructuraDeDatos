@@ -14,6 +14,9 @@ using namespace std;
 /**
  * @brief La funcion regresa los indices de los terminators, si en el índice actual no hay un terminator, agrega un -1.
  * 
+ * La funcion utiliza varios condicionales anidados junto con un ciclo for 
+ * que se encarga de construir el arreglo de los terminators. 
+ * 
  * @param arr el arreglo de numeros
  * @param N el tamaño del arreglo
  * @return int* apuntador con los índices de los terminators
@@ -48,7 +51,15 @@ int * terminatorFinder(int * arr, const int N){
   }
   return terminators;
 }
-
+/**
+ * @brief Imprime las posiciones de los terminators
+ * 
+ * Utiliza simplemente un ciclo for y algunas condicionales para evaluar los distintos 
+ * casos y posiciones de los terminators.
+ * 
+ * @param terminators 
+ * @param N 
+ */
 void printPositions(int * terminators, const int N){
   if(N == 0) {
     cout << "Arreglo vacio!\n" << *terminators << endl;
@@ -67,7 +78,10 @@ void printPositions(int * terminators, const int N){
     cout << "No terminator: " << -1 << endl;
   }
 }
-
+/**
+ * @brief namespace para los test cases.
+ * 
+ */
 namespace testCases{
   /**
    * @brief Test case 1, el output de esta funcion debe ser 2
@@ -124,13 +138,15 @@ namespace testCases{
     printPositions(terminators, 4);
   }
   /**
-   * @brief Execution of test cases
+   * @brief Ejecucion de los test cases
    * 
+   * No utiliza try/catch para input no deseado, pero maneja errores prácticos de rango.
+   * Con ayuda de un switch case puede navegar entre los distintos test cases.
    */
   void menu(){
     int option;
     do{
-      cout << "-- Que test case vas a hacer? --\n" 
+      cout << "-- Que test case vas a hacer? (ingresa un entero de 0-6) --\n" 
       << "0. Salir\n1. {5, 10, 20, 15}\n2. {10, 20, 15, 2, 23, 90, 67}\n"
       << "3. {}\n4. {1, 1, 1}\n5. {7, 4, 3, 2}\n6. {1, 2, 3, 5}\n>> ";
       cin >> option;
@@ -160,7 +176,7 @@ namespace testCases{
           cout << "- Input invalido\n";
           break;
       }
-    } while(option > 0 && option <= 6);
+    } while(option != 0);
 
   }
 }
