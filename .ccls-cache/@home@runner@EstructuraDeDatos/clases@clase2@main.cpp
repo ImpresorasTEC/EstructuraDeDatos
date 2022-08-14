@@ -31,7 +31,9 @@ int factorialRecursivo(unsigned int n){
 // Challenge John Wick
 
 /*
-
+@authors: 
+  - Ernesto Miranda Solis A01656828
+  - Adrian Aguilar Sanchez A01651592
 */
 /*
 Crea una función recursiva que obtenga la suma de los números naturales desde 1 hasta N. Se debe pasar como parámetro el número N (50 puntos)
