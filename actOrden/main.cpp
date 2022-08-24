@@ -14,7 +14,8 @@ int countLines(std::fstream & data){
 }
 
 std::string * readNames(std::string * data, const int N){
-  
+  std::string * names = new string [N];
+  for(int i = 0; i < N; i++)
 }
 
 int main(){
