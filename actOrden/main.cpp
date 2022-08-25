@@ -1,10 +1,12 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <sstream>
 
 int countLines(std::fstream & data){
+  std::string line;
   if(data.is_open()){
-    int count;
+    int count = 0;
     std::string line;
     while(std::getline(data, line)) 
       count++;
@@ -13,20 +15,52 @@ int countLines(std::fstream & data){
   return 0;
 }
 
-std::string * readNames(std::string * data, const int N){
-  std::string * names = new string [N];
-  for(int i = 0; i < N; i++)
+int countCols(std::string rawLine){
+  std::stringstream str (rawLine);
+  int count = 0;
+  std::string line;
+  while(std::getline(str, line, ','))
+    count++;
+  return count++;
+}
+
+void setLines(std::string * row, std::string rawLine){
+  std::stringstream str (rawLine);
+  std::string line;
+  int i = 0;
+  while(std::getline(str, line, ',')){
+    row[i] = line;
+    i++;
+  }
+}
+
+std::string ** getContent(std::fstream & data){
+  const int N = countLines(data)-1;
+  std::string rawLine, ** content = new std::string * [N], * row;
+  data.clear();
+  data.seekg(0, data.beg);
+  std::getline(data,rawLine);
+  const int M = countCols(rawLine);
+  int i = 0;
+  if(data.is_open()){
+    while(std::getline(data, rawLine)){
+      row = new std::string [M];
+      setLines(row, rawLine);
+      content[i] = row;
+      i++;
+    }
+  }
+  data.close();
+  return content;
 }
 
 int main(){
   std::fstream data;
-  std::string line;
   try{
-    data.open("marvel-wikia-data.csv", std::fstream::in);
+    data.open("marvel_wikia_data.csv", std::fstream::in);
   } catch(...){
     std::cerr << "Could not open file.\n";
   }
-  std::cout << countLines(data) << std::endl;
-  data.close();
+  std::string ** content = getContent(data);
   return 0;
 }
