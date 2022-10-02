@@ -4,6 +4,13 @@
 #include <sstream>
 
 /**
+* @author: 
+** Ernesto Miranda Solis A01656828
+** Adrian Aguilar Sanchez A01651592
+** Federico Castro Zenteno A01660986
+*/
+
+/**
  * @brief Hace un ordenamiento burbuja de complejidad O(n^2)
  * 
  * @tparam T el objeto pasado como referencia, se ausme que puede ser un string
